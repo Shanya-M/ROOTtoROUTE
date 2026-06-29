@@ -1,0 +1,149 @@
+{
+  "project_name": "Root to Route",
+  "theme_and_archetype": {
+    "theme": "DARK",
+    "archetype": "1 (Organic & Earthy - Dark Variation)",
+    "description": "A warm, organic dark mode mimicking rich soil. Dark shades of brown form the base, light green highlights interactive elements, and tan provides soft contrast for text and secondary accents."
+  },
+  "colors": {
+    "background": "#1C1614",
+    "surface": "#2A221F",
+    "surface_glass": "rgba(42, 34, 31, 0.6)",
+    "border": "#433530",
+    "primary": "#9EB27A",
+    "primary_hover": "#B4C890",
+    "secondary": "#CBA279",
+    "secondary_hover": "#E1B88F",
+    "text_primary": "#E8E4DB",
+    "text_secondary": "#A69A92",
+    "accent_warning": "#D47C5E",
+    "accent_success": "#7A9B61"
+  },
+  "typography": {
+    "headings": {
+      "family": "Cormorant Garamond, serif",
+      "weights": ["400", "600"],
+      "h1": "text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-none text-[#E8E4DB]",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl tracking-tight text-[#E8E4DB]",
+      "h3": "text-xl sm:text-2xl text-[#E8E4DB]"
+    },
+    "body": {
+      "family": "Outfit, sans-serif",
+      "weights": ["300", "400", "500"],
+      "base": "text-base leading-relaxed text-[#A69A92]",
+      "small": "text-sm text-[#A69A92]"
+    },
+    "labels": "text-xs uppercase tracking-[0.2em] font-medium text-[#CBA279]"
+  },
+  "spacing_and_layout": {
+    "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    "section_gap": "py-24 sm:py-32",
+    "card_padding": "p-6 sm:p-8",
+    "grid_bento": "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6",
+    "radius": "rounded-2xl"
+  },
+  "surfaces_and_shadows": {
+    "card": "bg-[#2A221F] border border-[#433530] rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.2)]",
+    "header_glass": "backdrop-blur-xl bg-[#1C1614]/80 border-b border-[#433530]"
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-[#9EB27A] text-[#1C1614] font-medium hover:bg-[#B4C890] transition-colors px-6 py-3 rounded-full",
+      "secondary": "bg-transparent border border-[#CBA279] text-[#CBA279] hover:bg-[#CBA279] hover:text-[#1C1614] transition-colors px-6 py-3 rounded-full"
+    },
+    "charts": {
+      "library": "recharts",
+      "palette": ["#9EB27A", "#CBA279", "#D47C5E", "#7A9B61"],
+      "tooltip": "bg-[#1C1614] border border-[#433530] text-[#E8E4DB]"
+    },
+    "forms": {
+      "input": "bg-[#1C1614] border border-[#433530] text-[#E8E4DB] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#9EB27A] focus:border-transparent",
+      "label": "text-sm font-medium text-[#A69A92] mb-2 block"
+    }
+  },
+  "pages": {
+    "Home": {
+      "description": "Overview dashboard for the solo beginner farmer.",
+      "features": [
+        "Seasonal planting calendar with harvest time",
+        "Water schedule (morning/evening) indicator",
+        "Current weather (Open-Meteo API) + trends",
+        "Overall Soil Status summary card",
+        "Alerts & Recent Activities feed"
+      ]
+    },
+    "Dashboard": {
+      "description": "Deep-dive analytics and recommendations.",
+      "features": [
+        "Current soil health charts (NPK, pH)",
+        "Crop Recommendation (Top 3 with confidence % based on soil, NPK, pH, Temp)",
+        "Fertilizer recommendation",
+        "Yield prediction & Crop rotation suggestions",
+        "AI Assistant Chatbot interface (Claude Sonnet 4.5 simulation)"
+      ]
+    },
+    "Guide": {
+      "description": "Curated and private articles for learning.",
+      "features": [
+        "Curated articles (Planting, Homemade fertilizer, Soil moisture, Disease/Pest control, Indigenous farming)",
+        "Private user-saved articles section (JWT auth needed for separation)"
+      ]
+    }
+  },
+  "media": {
+    "images": [
+      {
+        "category": "hero_background",
+        "url": "https://images.pexels.com/photos/34961217/pexels-photo-34961217.jpeg",
+        "description": "Serene farmland with barn and silo under a vibrant sunset sky."
+      },
+      {
+        "category": "article_planting",
+        "url": "https://images.pexels.com/photos/7944396/pexels-photo-7944396.jpeg",
+        "description": "Hands gently planting a young sprout in fresh soil."
+      },
+      {
+        "category": "article_fertilizer",
+        "url": "https://images.unsplash.com/photo-1492496913980-501348b61469",
+        "description": "person carrying rich dark soil."
+      },
+      {
+        "category": "article_moisture",
+        "url": "https://images.pexels.com/photos/12113255/pexels-photo-12113255.jpeg",
+        "description": "Close-up of hands planting in a moist garden bed."
+      },
+      {
+        "category": "article_pests",
+        "url": "https://images.pexels.com/photos/32567706/pexels-photo-32567706.jpeg",
+        "description": "Close-up of a ladybird on a wheat spike under natural light outdoors."
+      },
+      {
+        "category": "article_disease",
+        "url": "https://images.pexels.com/photos/2974409/pexels-photo-2974409.jpeg",
+        "description": "Green leaves covered with holes from pests on summer day."
+      },
+      {
+        "category": "article_indigenous",
+        "url": "https://images.pexels.com/photos/32065199/pexels-photo-32065199.jpeg",
+        "description": "Charming rural farm landscape."
+      }
+    ],
+    "icons": "lucide-react"
+  },
+  "interactions_and_motion": {
+    "hover_states": "All cards should subtly lift (-translate-y-1) and increase border brightness on hover.",
+    "transitions": "Use transition-all duration-300 ease-in-out for interactive elements.",
+    "testing": "All interactive elements MUST include a data-testid attribute in kebab-case."
+  },
+  "instructions_to_main_agent": [
+    "Ensure the application strictly follows the Dark Earthy color palette. Do NOT use default black/white or generic Tailwind slate/gray colors.",
+    "The backgrounds must be #1C1614, and all cards/surfaces must be #2A221F with subtle #433530 borders.",
+    "Use Recharts for the interactive dashboard charts (NPK and pH levels).",
+    "Integrate Open-Meteo API for real-time weather trends on the Home page.",
+    "Implement browser GPS auto-detect for weather and location-based data.",
+    "Use lucide-react for all iconography.",
+    "The AI Assistant should be integrated as a chat interface on the Dashboard.",
+    "Setup JWT authentication so users can save private articles separately from main guide articles.",
+    "Apply `data-testid` to all actionable components (buttons, links, form inputs)."
+  ]
+}

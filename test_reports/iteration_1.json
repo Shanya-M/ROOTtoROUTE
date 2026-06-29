@@ -1,0 +1,41 @@
+{
+  "summary": "First-iteration testing of Root to Route. Backend 22/22 tests passing (100%) covering auth (register/login/me/logout), weather (Open-Meteo), planting calendar (28 rows), curated articles (9), private articles CRUD with 401 guard, soil readings, recommendations (crops/fertilizer/yield/rotation), activities/alerts (incl. derived alerts), and SSE chat with Claude Sonnet 4.5 (delta+done events streamed). Frontend e2e via Playwright also passed: home renders hero+weather (Nairobi default)+soil/alerts/calendar/activities cards; register routes to /dashboard; soil save → crop recommend (3 cards) → fertilizer suggestions → yield estimate (51.75t) all work; AI chat streamed a real Claude response (~345 chars); Guide shows 9 curated cards and private-tab create/delete works end-to-end.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "CORS middleware", "issue": "allow_origins=['*'] with allow_credentials=False while frontend uses withCredentials=true. Works today because frontend and backend share the same preview origin (CORS not exercised), but will break cookie auth if ever served from a different origin. Recommend setting explicit origin(s) and allow_credentials=True."},
+      {"endpoint": "/api/auth/register & /api/auth/login", "issue": "Cookie set with secure=False. Works in HTTPS dev preview, but should be secure=True in production."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Dashboard charts (NPK/pH/history)", "issues": ["Recharts logs 'width(-1) height(-1)' warnings on initial render when the ResponsiveContainer parent has no measured size yet. Charts still render after layout, but consider giving the chart wrappers an explicit minHeight to suppress the warning."]}
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/backend_test.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Optional: tighten CORS (explicit origins + allow_credentials=True) and set secure cookie flag in production.",
+    "Optional: give Recharts containers an explicit minHeight to silence width(-1)/height(-1) warnings."
+  ],
+  "critical_code_review_comments": [
+    "server.py CORS allow_credentials=False contradicts withCredentials=true on the frontend; currently fine because same-origin, but a footgun on deploy.",
+    "Cookie set with secure=False — fine for preview, but should be conditionally True in production.",
+    "server.py is ~540 lines and trending — consider splitting routers (auth/soil/recommend/articles/chat) into modules before it grows further.",
+    "/api/chat persists assistant messages with no user_id, then /api/chat/{session_id} merges them by session — this leaks assistant messages across users if session_id collides. Tag assistant rows with user_id too.",
+    "@app.on_event('startup'/'shutdown') is deprecated in modern FastAPI — migrate to lifespan handlers."
+  ],
+  "updated_files": [
+    "/app/backend/tests/backend_test.py"
+  ],
+  "success_rate": {"backend": "100% (22/22)", "frontend": "100% of tested flows"},
+  "test_credentials": "Seed: farmer@roottoroute.app / harvest123. Tests also create fresh TEST_* users per run.",
+  "seed_data_creation": "Tests create disposable TEST_*@rtr.app users and TEST private articles; cleanup of private articles done within the test. Test users left in DB are harmless (prefixed TEST_).",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend pytest at /app/backend/tests/backend_test.py is the regression suite — run with: pytest /app/backend/tests/backend_test.py -v. Chat SSE streaming was verified live with the Emergent Universal Key for Claude Sonnet 4.5; if budget is later exceeded, the endpoint still returns SSE with a friendly fallback message, so the test_chat_streams assertion (delta+done) will still pass. Frontend public URL: https://soil-smart-32.preview.emergentagent.com. All key elements have data-testid attributes."
+}
